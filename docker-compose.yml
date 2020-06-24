@@ -14,7 +14,7 @@ services:
     volumes:
       - ./www:/var/www/html
       - ./.entrypoint/server-entrypoint:/entrypoint
-      - ./:/var/www/html/content/plugins/ucomm-brochures-graphql-extension
+      - ./:/var/www/html/content/plugins/ucomm-wpgraphql-boilerplatge
     depends_on:
       - mysql
     restart: always
@@ -30,7 +30,7 @@ services:
       MYSQL_DATABASE: wordpress
     volumes:
       # change the name to match the docker volume below
-      - ucomm-brochures-graphql-extension-volume:/var/lib/mysql
+      - ucomm-wpgraphql-boilerplatge-volume:/var/lib/mysql
 
 volumes:
-  ucomm-brochures-graphql-extension-volume:
+  ucomm-wpgraphql-boilerplatge-volume:
