@@ -1,0 +1,10 @@
+*.env
+*.log
+.DS_Store
+
+vendor/
+
+/www/*
+!/www/wp-config.php
+!/www/index.php
+!/www/.htaccess

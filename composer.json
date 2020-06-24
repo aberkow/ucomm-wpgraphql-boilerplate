@@ -1,0 +1,47 @@
+{
+    "name": "adb16130/ucomm-brochures-graphql-extension",
+    "description": "an extension plugin test for beaver builder posts",
+    "type": "wordpress-plugin",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Adam Berkowitz",
+            "email": "adam.berkowitz@uconn.edu"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.ucdev.net/"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "composer/installers": "~1.0",
+        "johnpbloch/wordpress": "@stable",
+        "wp-graphql/wp-graphql": "dev-master",
+        "wpackagist-plugin/query-monitor": "^3.3.6",
+        "wpackagist-plugin/wordpress-importer": "*",
+        "wpackagist-theme/twentynineteen": "^1.4"
+    },
+    "extra": {
+        "installer-paths": {
+            "./www/content/plugins/{$name}": [
+                "type:wordpress-plugin"
+            ],
+            "./www/content/themes/{$name}": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-install-dir": "./www/wordpress"
+    },
+    "config": {
+        "secure-http": true,
+        "sort-packages": true
+    }
+}

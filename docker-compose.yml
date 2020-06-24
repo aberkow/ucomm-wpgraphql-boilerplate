@@ -1,0 +1,36 @@
+version: "3"
+services:
+  web:
+    image: uconn/php74-official:latest
+    environment:
+      SITE_ENV: local
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./www:/var/www/html
+      - ./.entrypoint/server-entrypoint:/entrypoint
+      - ./:/var/www/html/content/plugins/ucomm-brochures-graphql-extension
+    depends_on:
+      - mysql
+    restart: always
+  mysql:
+    image: uconn/comm0db:latest
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+    volumes:
+      # change the name to match the docker volume below
+      - ucomm-brochures-graphql-extension-volume:/var/lib/mysql
+
+volumes:
+  ucomm-brochures-graphql-extension-volume:
