@@ -26,18 +26,13 @@ class TypeRegister
   }
 
   public function createRegistry() {
-    foreach ($this->types as $type) {
-      // echo "<pre>";
-      // var_dump(get_class_methods(get_class($type)));
-      // var_dump($type);
-      // echo "</pre>";
-      // $class = get_class($type);
-      // echo "<pre>";
-      // var_dump($class::registerType());
-      // echo "</pre>";
-      add_action('graphql_register_types', $type->registerType());
-    }
-    // array_map(function($type) {
-    // }, $this->types);
+
+    array_map(function($type) {
+      $class = 'UCommWPGQLBoilerplate\Types\\' . $type;
+      $resolved = new $class($type);
+      add_action('graphql_register_types', function() use ($resolved) {
+        $resolved->registerType();
+      });
+    }, $this->types);
   }
 }

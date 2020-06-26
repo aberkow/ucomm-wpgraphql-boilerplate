@@ -9,6 +9,7 @@ Text Domain: ucomm-wpgql-boilerplate
 
 // use UCommWPGQLBoilerplate\Fields\MyField;
 use UCommWPGQLBoilerplate\Types\MyType;
+use UCommWPGQLBoilerplate\Fields\FieldRegister;
 use UCommWPGQLBoilerplate\Types\TypeRegister;
 
 if (!defined('WPINC')) {
@@ -27,22 +28,41 @@ if (file_exists(dirname(ABSPATH) . '/vendor/autoload.php')) {
   require_once('vendor/autoload.php');
 }
 
+require 'lib/types/CustomTypeInterface.php';
+require 'lib/types/CustomType.php';
+require 'lib/types/TypeRegister.php';
 require 'lib/types/MyType.php';
 
+require 'lib/fields/FieldInterface.php';
+require 'lib/fields/CustomField.php';
 require 'lib/fields/MyField.php';
+require 'lib/fields/FieldRegister.php';
 
-$my_type = new MyType('MyType');
+// require 'lib/fields/MyField.php';
+
+// $my_type = new MyType('MyType');
+
+// $types = [
+//   // namespace
+//   'UCommWPGQLBoilerplate\Types\\' => [
+//     'MyType'
+//   ],
+//   // 'Test' => [
+//   //   'hello'
+//   // ]
+// ];
 
 $types = [
-  $my_type,
+  'MyType'
 ];
-
 
 $type_register = new TypeRegister();
 $types_set = $type_register->setTypes($types);
 if ($types_set) {
   $type_register->createRegistry();
 }
+
+new FieldRegister();
 
 // $my_field = new MyField('RootQuery', 'myField');
 

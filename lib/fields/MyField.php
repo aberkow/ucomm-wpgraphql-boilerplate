@@ -1,8 +1,6 @@
 <?php
 
-namespace BrochuresGQLExt\Fields;
-
-use WPGraphQLSDK\Fields\CustomField;
+namespace UCommWPGQLBoilerplate\Fields;
 
 class MyField extends CustomField {
   public function __construct(string $typeName, string $fieldName)
@@ -16,7 +14,10 @@ class MyField extends CustomField {
       'description' => 'My Custom Field',
       'type' => 'MyType',
       'resolve' => function ($root, $args, $context, $info) {
-        return 'hello world';
+        return [
+          'age' => 41,
+          'name' => 'Adam'
+        ];
       }
     ];
   }
