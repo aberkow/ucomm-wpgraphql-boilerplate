@@ -2,6 +2,9 @@
 
 namespace UCommWPGQLBoilerplate\Types;
 
+use RecursiveArrayIterator;
+use RecursiveIteratorIterator;
+
 class TypeRegister
 {
 
@@ -9,16 +12,7 @@ class TypeRegister
 
   public function __construct()
   {
-    // array_filter(get_class_methods($this), function($method) {
-    //   if ($method !== '__construct') {
-    //     add_action('graphql_register_types', [$this, $method]);
-    //   }
-    // });
-  }
 
-  public function setTypes($types): bool {
-    $this->types = $types;
-    return count($this->types) > 0 ? true : false;
   }
 
   public function getTypes() {
@@ -35,4 +29,20 @@ class TypeRegister
       });
     }, $this->types);
   }
+
+  function setTypes(array $myTypes, string $prefix = ''): array
+  {
+    $list = [];
+
+    foreach ($myTypes as $i => $type) {
+      if (is_array($type)) {
+        $list = array_merge($list, $this->setTypes($type, $prefix . $i));
+      } else {
+        $list[] = $prefix . $type;
+      }
+    }
+
+    $this->types = $list;
+    return $this->types;
+  }  
 }

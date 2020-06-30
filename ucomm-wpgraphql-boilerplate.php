@@ -38,37 +38,28 @@ require 'lib/fields/CustomField.php';
 require 'lib/fields/MyField.php';
 require 'lib/fields/FieldRegister.php';
 
-// require 'lib/fields/MyField.php';
-
-// $my_type = new MyType('MyType');
-
-// $types = [
-//   // namespace
-//   'UCommWPGQLBoilerplate\Types\\' => [
-//     'MyType'
-//   ],
-//   // 'Test' => [
-//   //   'hello'
-//   // ]
-// ];
-
 $types = [
-  'MyType'
+  'UCommWPGQLBoilerplate\\Types\\' => [
+    'MyType',
+    'MySecondType',
+    'SubType\\' => [
+      'MySubType'
+    ]
+  ],
+  'SomethingElse\\' => [
+    'hello',
+    'world'
+  ]
 ];
 
 $type_register = new TypeRegister();
-$types_set = $type_register->setTypes($types);
-if ($types_set) {
+$preparedTypes = $type_register->setTypes($types);
+if (count($preparedTypes) > 0) {
   $type_register->createRegistry();
 }
 
+echo "<pre>";
+var_dump($preparedTypes);
+echo "</pre>";
+
 new FieldRegister();
-
-// $my_field = new MyField('RootQuery', 'myField');
-
-// $fields_register = new FieldRegister();
-// $fields_set = $fields_register->setFields([ $my_field ]);
-// if ($fields_set) {
-//   $fields_register->createFields();
-// }
-
