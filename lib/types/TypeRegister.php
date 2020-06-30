@@ -26,8 +26,13 @@ class TypeRegister
     }, $this->types);
   }
 
-  function setTypes(array $myTypes, string $prefix = ''): array
+  function setTypes(array $myTypes = [], string $prefix = ''): array
   {
+
+    if (count($myTypes) === 0) {
+      $myTypes = include BGQLE_DIR . '/lib/data/types.php';
+    }
+
     $list = [];
 
     foreach ($myTypes as $i => $type) {

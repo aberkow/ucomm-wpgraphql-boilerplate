@@ -8,7 +8,6 @@ Text Domain: ucomm-wpgql-boilerplate
 */
 
 // use UCommWPGQLBoilerplate\Fields\MyField;
-use UCommWPGQLBoilerplate\Types\MyType;
 use UCommWPGQLBoilerplate\Fields\FieldRegister;
 use UCommWPGQLBoilerplate\Types\TypeRegister;
 
@@ -38,14 +37,8 @@ require 'lib/fields/CustomField.php';
 require 'lib/fields/MyField.php';
 require 'lib/fields/FieldRegister.php';
 
-$types = [
-  'UCommWPGQLBoilerplate\\Types\\' => [
-    'MyType',
-  ],
-];
-
 $type_register = new TypeRegister();
-$preparedTypes = $type_register->setTypes($types);
+$preparedTypes = $type_register->setTypes();
 if (count($preparedTypes) > 0) {
   $type_register->createRegistry();
 }
