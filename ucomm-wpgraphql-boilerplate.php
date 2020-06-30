@@ -41,15 +41,7 @@ require 'lib/fields/FieldRegister.php';
 $types = [
   'UCommWPGQLBoilerplate\\Types\\' => [
     'MyType',
-    'MySecondType',
-    'SubType\\' => [
-      'MySubType'
-    ]
   ],
-  'SomethingElse\\' => [
-    'hello',
-    'world'
-  ]
 ];
 
 $type_register = new TypeRegister();
@@ -57,9 +49,5 @@ $preparedTypes = $type_register->setTypes($types);
 if (count($preparedTypes) > 0) {
   $type_register->createRegistry();
 }
-
-echo "<pre>";
-var_dump($preparedTypes);
-echo "</pre>";
 
 new FieldRegister();

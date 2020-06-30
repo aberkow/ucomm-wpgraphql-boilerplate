@@ -2,9 +2,6 @@
 
 namespace UCommWPGQLBoilerplate\Types;
 
-use RecursiveArrayIterator;
-use RecursiveIteratorIterator;
-
 class TypeRegister
 {
 
@@ -20,10 +17,9 @@ class TypeRegister
   }
 
   public function createRegistry() {
-
     array_map(function($type) {
-      $class = 'UCommWPGQLBoilerplate\Types\\' . $type;
-      $resolved = new $class($type);
+      $typeName = basename(str_replace('\\', '/', $type));
+      $resolved = new $type($typeName);
       add_action('graphql_register_types', function() use ($resolved) {
         $resolved->registerType();
       });
