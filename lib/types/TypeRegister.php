@@ -26,7 +26,7 @@ class TypeRegister
     }, $this->types);
   }
 
-  function setTypes(array $myTypes = [], string $prefix = ''): array
+  public function setTypes(array $myTypes = [], string $prefix = ''): array
   {
 
     if (count($myTypes) === 0) {

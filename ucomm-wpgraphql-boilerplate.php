@@ -43,4 +43,5 @@ if (count($preparedTypes) > 0) {
   $type_register->createRegistry();
 }
 
-new FieldRegister();
+$field_register = new FieldRegister();
+$field_register->setFields();
