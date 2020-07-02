@@ -8,6 +8,8 @@ Text Domain: ucomm-wpgql-boilerplate
 */
 
 // use UCommWPGQLBoilerplate\Fields\MyField;
+
+use UCommWPGQLBoilerplate\Connections\MyConnection;
 use UCommWPGQLBoilerplate\Fields\FieldRegister;
 use UCommWPGQLBoilerplate\Types\TypeRegister;
 
@@ -37,6 +39,11 @@ require 'lib/fields/CustomField.php';
 require 'lib/fields/MyField.php';
 require 'lib/fields/FieldRegister.php';
 
+require 'lib/connections/ConnectionInterface.php';
+require 'lib/connections/CustomConnection.php';
+require 'lib/connections/MyConnection.php';
+
+
 $type_register = new TypeRegister();
 $preparedTypes = $type_register->setTypes();
 if (count($preparedTypes) > 0) {
@@ -45,3 +52,11 @@ if (count($preparedTypes) > 0) {
 
 $field_register = new FieldRegister();
 $field_register->setFields();
+
+$my_connection = new MyConnection('RootQuery', 'MyType', 'myConnections');
+
+add_action('graphql_register_types', function() use ($my_connection) {
+  $my_connection->registerConnection();
+});
+
+
