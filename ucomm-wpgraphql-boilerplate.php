@@ -9,6 +9,7 @@ Text Domain: ucomm-wpgql-boilerplate
 
 // use UCommWPGQLBoilerplate\Fields\MyField;
 
+use UCommWPGQLBoilerplate\Connections\ConnectionRegister;
 use UCommWPGQLBoilerplate\Connections\MyConnection;
 use UCommWPGQLBoilerplate\Fields\FieldRegister;
 use UCommWPGQLBoilerplate\Types\TypeRegister;
@@ -42,6 +43,7 @@ require 'lib/fields/FieldRegister.php';
 require 'lib/connections/ConnectionInterface.php';
 require 'lib/connections/CustomConnection.php';
 require 'lib/connections/MyConnection.php';
+require 'lib/connections/ConnectionRegister.php';
 
 
 $type_register = new TypeRegister();
@@ -52,6 +54,10 @@ if (count($preparedTypes) > 0) {
 
 $field_register = new FieldRegister();
 $field_register->setFields();
+
+
+$connection_register = new ConnectionRegister();
+$connection_register->setConnections();
 
 $my_connection = new MyConnection('RootQuery', 'MyType', 'myConnections');
 
