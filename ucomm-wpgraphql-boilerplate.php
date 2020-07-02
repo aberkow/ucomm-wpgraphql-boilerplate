@@ -34,6 +34,7 @@ require 'lib/types/CustomTypeInterface.php';
 require 'lib/types/CustomType.php';
 require 'lib/types/TypeRegister.php';
 require 'lib/types/MyType.php';
+require 'lib/types/MyType/SubType.php';
 
 require 'lib/fields/FieldInterface.php';
 require 'lib/fields/CustomField.php';
@@ -44,6 +45,7 @@ require 'lib/connections/ConnectionInterface.php';
 require 'lib/connections/CustomConnection.php';
 require 'lib/connections/MyConnection.php';
 require 'lib/connections/ConnectionRegister.php';
+require 'lib/connections/MyConnection/MySubConnection.php';
 
 
 $type_register = new TypeRegister();
@@ -59,10 +61,10 @@ $field_register->setFields();
 $connection_register = new ConnectionRegister();
 $connection_register->setConnections();
 
-$my_connection = new MyConnection('RootQuery', 'MyType', 'myConnections');
+// $my_connection = new MyConnection('RootQuery', 'MyType', 'myConnections');
 
-add_action('graphql_register_types', function() use ($my_connection) {
-  $my_connection->registerConnection();
-});
+// add_action('graphql_register_types', function() use ($my_connection) {
+//   $my_connection->registerConnection();
+// });
 
 

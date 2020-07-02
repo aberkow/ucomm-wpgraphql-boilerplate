@@ -3,9 +3,16 @@
 return [
   'UCommWPGQLBoilerplate\\Connections\\' => [
     [
-      'fromType' => 'MyConnection',
-      'toType' => 'RootQuery',
-      'fieldName' => 'myConnections',
+      'className' => 'MyConnection',
+      'fromType' => 'RootQuery',
+      'toType' => 'MyType',
+      'fromFieldName' => 'myConnections',
+    ],
+    [
+      'className' => 'MyConnection\\MySubConnection',
+      'fromType' => 'MyType',
+      'toType' => 'MySubType',
+      'fromFieldName' => 'mySubConnection'
     ]
   ]  
 ];
