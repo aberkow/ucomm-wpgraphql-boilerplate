@@ -16,13 +16,22 @@ class MySubConnection extends CustomConnection {
       'toType' => $this->toType,
       'fromFieldName' => $this->fromFieldName,
       'resolve' => function($root, $args, $context, $info) {
+        $nodes = [];
+
+        if ($root['name'] === 'Adam') {
+          $nodes = [
+            'job' => 'Web Developer',
+            'experience' => 'More than some, less than others'
+          ];
+        } else if ($root['name'] === 'Ilana') {
+          $nodes = [
+            'job' => 'Rabbi',
+            'experience' => 'SOOO MUCH!!!!'
+          ];
+        }
+
         return [
-          'nodes' => [
-            [
-              'job' => 'Web Developer',
-              'experience' => 'More than some, less than others'
-            ]
-          ]
+          'nodes' => [ $nodes ]
         ];
       }
     ];
