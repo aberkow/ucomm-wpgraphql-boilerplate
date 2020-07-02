@@ -16,6 +16,40 @@ Activate the wp-graphql plugin and this one at the same time
 ### Creating new types
 For now, add types, fields, and connections to their appropriate files in `/lib/data`. Make sure to `require` those files in `ucomm-wpgraphql-boilerplate.php`. I may change this to some kind of autoloader in the future.
 
+## Queries
+As it stands right now, these are the two queries you can perform
+```
+{
+  myField {
+    age
+    name
+    mySubConnection {
+      nodes {
+        experience
+        job
+      }
+    }
+  }
+}
+```
+
+```
+{
+  myConnections {
+    nodes {
+      age
+      name
+			mySubConnection {
+        nodes {
+          experience
+          job
+        }
+      }
+    }
+  }
+}
+```
+
 
 ## TODO
 - create an autoloader to require files. possibly as part of the `XRegister` classes
